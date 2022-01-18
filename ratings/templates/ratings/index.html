@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+upload
+{% endblock title %}
+
+
+{% block content %}
+<h1 class="text-center">Multiple File Upload Drag and drop</h1>
+<form action="upload/" method="POST" class="dropzone" id="my-dropzone">
+	{% csrf_token %}
+	<div class="fallback">
+		<input type="file" name="file" multiple>
+	</div>
+	
+</form>
+
+{% endblock content %}
