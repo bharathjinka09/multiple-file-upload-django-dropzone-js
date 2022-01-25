@@ -132,5 +132,24 @@ const myDropZone = new Dropzone('#my-dropzone',{
         url:'upload/',
         maxFiles: 5,
         maxFilesize: 5,
-        acceptedFiles: '.png, .jpg, .jpeg'
+        acceptedFiles: '.png, .jpg, .jpeg',
+        addRemoveLinks: true,
+        removedfile: function(file) {
+         var fileName = file.name; 
+
+         console.log({fileName})
+
+           
+         // $.ajax({
+         //   type: 'POST',
+         //   url: 'upload.php',
+         //   data: {name: fileName,request: 'delete'},
+         //   sucess: function(data){
+         //      console.log('success: ' + data);
+         //   }
+         // });
+  
+         var _ref;
+          return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+        },
 })
