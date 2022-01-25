@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from ratings.views import main_view, rate_image, MainView, file_upload_view
+from ratings.views import main_view, rate_image, MainView, file_upload_view, file_delete_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,8 @@ urlpatterns = [
     path('', MainView.as_view(), name="upload-image"),
     path('rate/', rate_image, name='rate-view'),
     path('upload/', file_upload_view, name='upload-view'),
+    path('file-delete/', file_delete_view, name='file-delete-view'),
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -125,6 +125,25 @@ if (one) {
     }))
 }
 
+// get csrftoken
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+console.log({csrftoken})
+
 // Dropzone code
 Dropzone.autoDiscover = false
 
@@ -140,14 +159,18 @@ const myDropZone = new Dropzone('#my-dropzone',{
          console.log({fileName})
 
            
-         // $.ajax({
-         //   type: 'POST',
-         //   url: 'upload.php',
-         //   data: {name: fileName,request: 'delete'},
-         //   sucess: function(data){
-         //      console.log('success: ' + data);
-         //   }
-         // });
+         $.ajax({
+           type: 'POST',
+           url: '/file-delete/',
+           data: {
+            name: fileName, 
+            request: 'delete',
+            csrfmiddlewaretoken: csrftoken
+           },
+           sucess: function(data){
+              console.log('success: ' + data);
+           }
+         });
   
          var _ref;
           return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Rating,Doc
 from django.http import JsonResponse, HttpResponse
 from django.views.generic import TemplateView
+import os
+from django.conf import settings
 # Create your views here.
 
 def main_view(request):
@@ -36,6 +38,20 @@ def file_upload_view(request):
         return HttpResponse("uploaded")
     return JsonResponse({"post":'false'})
 
+def file_delete_view(request):
+    # print(request.__dict__['_post']['name'],'3t')
+    print(settings.MEDIA_ROOT)
+    # print(settings.MEDIA_ROOT+'/images/'+my_file)
+    if request.method == "POST":
+        my_file = request.__dict__['_post']['name']
+        # print(my_file,"my_fileeee")
+        # Doc.objects.remove(upload=my_file)
+        os.remove(str(settings.MEDIA_ROOT)+'/images/'+my_file)
+        Doc.objects.get(upload=str(settings.MEDIA_ROOT)+'/images/'+my_file).delete()
+
+
+        return HttpResponse("deleted")
+    return JsonResponse({"post":'false'})
 
 
 
