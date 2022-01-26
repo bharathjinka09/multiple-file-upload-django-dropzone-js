@@ -156,7 +156,8 @@ const myDropZone = new Dropzone('#my-dropzone',{
         removedfile: function(file) {
          var fileName = file.name; 
 
-         console.log({fileName})
+         // console.log({fileName})
+         console.log({file})
 
            
          $.ajax({

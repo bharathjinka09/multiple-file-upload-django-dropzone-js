@@ -47,7 +47,9 @@ def file_delete_view(request):
         # print(my_file,"my_fileeee")
         # Doc.objects.remove(upload=my_file)
         os.remove(str(settings.MEDIA_ROOT)+'/images/'+my_file)
-        Doc.objects.get(upload=str(settings.MEDIA_ROOT)+'/images/'+my_file).delete()
+        # import time
+        # time.sleep(2)
+        Doc.objects.get(upload='images/'+my_file).delete()
 
 
         return HttpResponse("deleted")
