@@ -28,6 +28,8 @@ def rate_image(request):
 
 class MainView(TemplateView):
     template_name = "ratings/index.html"
+    extra_context = {'name': 'bharath'}
+
 
 def file_upload_view(request):
     print(request.FILES)

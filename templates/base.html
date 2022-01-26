@@ -20,6 +20,20 @@
     <title> {% block title %}{% endblock title %}</title>
   </head>
   <body>
+
+    {% if name == "bharath" %}
+        <div class='popup'>
+            <div class='cnt223'>
+                <h1>Important Notice {{name}}</h1>
+                <p>
+                    We were affected by the fire next door and will remain closed until further notice.
+                    <br/>
+                    <br/>
+                    <a href='' class='close'>Close</a>
+                </p>
+            </div>
+        </div>
+    {% endif %}
     <div class="container mt-3">
         {% block content %}
         {% endblock content %}
